@@ -8,12 +8,12 @@ import { Slider } from "@/components/ui/slider";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 
-interface SongData {
+export interface SongData {
   sys: { id: string };
   fields: {
     title: string;
     artist: string;
-    lyrics: string; // Changed from 'any' to 'string'
+    lyrics: string;
     views: number;
     slug: string;
   };
