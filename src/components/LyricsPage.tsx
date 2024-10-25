@@ -67,10 +67,7 @@ export default function LyricsPage({ songData }: LyricsPageProps) {
           className="mb-8"
         >
           <Link href="/">
-            <Button
-              variant="ghost"
-              className="text-white hover:text-pink-300 transition-colors"
-            >
+            <Button variant="ghost" className="text-white transition-colors">
               <ChevronLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Button>
@@ -112,13 +109,11 @@ export default function LyricsPage({ songData }: LyricsPageProps) {
               <span className="text-gray-300">{fontSize}px</span>
             </div>
             <div className="flex space-x-2">
-              <Button variant="outline" size="sm" onClick={copyToClipboard}>
-                <Copy className="h-4 w-4 mr-2" />
-                Copy
+              <Button variant="icon" onClick={copyToClipboard} className="p-2">
+                <Copy className="h-5 w-5 text-gray-300" />
               </Button>
-              <Button variant="outline" size="sm" onClick={shareLyrics}>
-                <Share2 className="h-4 w-4 mr-2" />
-                Share
+              <Button variant="icon" onClick={shareLyrics} className="p-2">
+                <Share2 className="h-5 w-5 text-gray-300" />
               </Button>
             </div>
           </div>
