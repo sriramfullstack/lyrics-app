@@ -29,6 +29,7 @@ export default async function Page({ params }: PageProps) {
       lyrics: songEntry.fields.lyrics as string,
       views: songEntry.fields.views as number,
       slug: songEntry.fields.slug as string,
+      youtubeId: songEntry.fields.youtubeId as string,
     },
   };
 

@@ -11,6 +11,7 @@ export interface SongFields extends EntrySkeletonType {
   lyrics: string;
   views: number;
   slug: string;
+  youtubeId?: string;
 }
 
 export type SongEntry = Entry<SongFields>;

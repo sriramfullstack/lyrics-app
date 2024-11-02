@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
+import { getYouTubeViews } from "@/lib/youtube";
 
 export interface SongData {
   sys: { id: string };
@@ -16,6 +17,7 @@ export interface SongData {
     lyrics: string;
     views: number;
     slug: string;
+    youtubeId?: string;
   };
 }
 
@@ -26,6 +28,7 @@ interface LyricsPageProps {
 export default function LyricsPage({ songData }: LyricsPageProps) {
   const [fontSize, setFontSize] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [youtubeViews, setYoutubeViews] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +38,18 @@ export default function LyricsPage({ songData }: LyricsPageProps) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Fetch YouTube views if video ID exists
+    const fetchYouTubeViews = async () => {
+      if (songData.fields.youtubeId) {
+        const views = await getYouTubeViews(songData.fields.youtubeId);
+        setYoutubeViews(views);
+      }
+    };
+
+    fetchYouTubeViews();
+  }, [songData.fields.youtubeId]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -85,9 +100,24 @@ export default function LyricsPage({ songData }: LyricsPageProps) {
           <h2 className="text-2xl md:text-3xl text-gray-300 mb-4">
             {songData.fields.artist}
           </h2>
-          <p className="text-gray-400">
-            {songData.fields.views.toLocaleString()} views
-          </p>
+          <div className="flex items-center justify-center gap-4 text-gray-400">
+            {youtubeViews !== null && (
+              <p>{youtubeViews.toLocaleString()} YouTube views</p>
+            )}
+          </div>
+          {songData.fields.youtubeId && (
+            <div className="mt-6">
+              <iframe
+                className="mx-auto rounded-lg shadow-lg"
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${songData.fields.youtubeId}`}
+                title={`${songData.fields.title} - ${songData.fields.artist}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
