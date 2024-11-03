@@ -83,7 +83,7 @@ export default function LyricsPage({ songData }: LyricsPageProps) {
         >
           <Link href="/">
             <Button variant="ghost" className="text-white transition-colors">
-              <ChevronLeft className="mr-2 h-4 w-4" />
+              <ChevronLeft className="h-4 w-4" />
               Back to Home
             </Button>
           </Link>
@@ -106,16 +106,16 @@ export default function LyricsPage({ songData }: LyricsPageProps) {
             )}
           </div>
           {songData.fields.youtubeId && (
-            <div className="mt-6">
-              <iframe
-                className="mx-auto rounded-lg shadow-lg"
-                width="560"
-                height="315"
-                src={`https://www.youtube.com/embed/${songData.fields.youtubeId}`}
-                title={`${songData.fields.title} - ${songData.fields.artist}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+            <div className="mt-6 flex justify-center">
+              <div className="relative w-[500px] h-[315px]">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                  src={`https://www.youtube.com/embed/${songData.fields.youtubeId}`}
+                  title={`${songData.fields.title} - ${songData.fields.artist}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             </div>
           )}
         </motion.div>
