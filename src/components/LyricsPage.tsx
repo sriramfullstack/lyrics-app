@@ -32,7 +32,7 @@ export default function LyricsPage({ songData }: LyricsPageProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.pageYOffset > 300);
+      setShowScrollTop(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
