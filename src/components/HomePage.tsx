@@ -149,7 +149,9 @@ export default function HomePage({ popularSongs }: HomeProps) {
                 transition={{ duration: 0.5 }}
                 className="text-center text-gray-300 py-12"
               >
-                <p className="text-xl">No results found for "{searchQuery}"</p>
+                <p className="text-xl">
+                  No results found for &quot;{searchQuery}&quot;
+                </p>
                 <p className="mt-2">Try searching with different keywords</p>
               </motion.div>
             )}
