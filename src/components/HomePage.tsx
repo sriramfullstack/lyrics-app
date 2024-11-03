@@ -81,7 +81,7 @@ export default function HomePage({ popularSongs }: HomeProps) {
           className="text-center mb-12"
         >
           <h1 className="text-5xl md:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
-            Fancy Lyrics App
+            Fancy Lyrics
           </h1>
           <p className="text-xl md:text-2xl text-gray-300">
             Discover the words to your favorite songs
