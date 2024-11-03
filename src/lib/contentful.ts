@@ -1,8 +1,15 @@
 import { createClient, Entry, EntrySkeletonType } from "contentful";
 
+// Add validation for environment variables
+if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+  throw new Error(
+    "Missing required environment variables CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN"
+  );
+}
+
 const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
+  space: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
 export interface SongFields extends EntrySkeletonType {
